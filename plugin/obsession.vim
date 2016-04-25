@@ -98,10 +98,20 @@ function! ObsessionStatus(...) abort
   return substitute(fmt, '%s', get(['', 'Session', 'Obsession'], numeric), 'g')
 endfunction
 
+function! ObsessionLoad()
+  if argc() == 0
+    let g:this_obsession_load = getcwd() . '/Session.vim'
+    if (filereadable(g:this_obsession_load))
+      exe 'source ' g:this_obsession_load
+    endif
+  endif
+endfunction
+
 augroup obsession
   autocmd!
   autocmd BufEnter,VimLeavePre * exe s:persist()
   autocmd User Flags call Hoist('global', 'ObsessionStatus')
+  autocmd VimEnter * nested :call ObsessionLoad()
 augroup END
 
 " vim:set et sw=2:
