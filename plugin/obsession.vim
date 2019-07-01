@@ -25,10 +25,10 @@ function! s:dispatch(bang, file) abort
     elseif empty(a:file) && !empty(session)
       let file = session
     elseif empty(a:file)
-      let file = getcwd() . '/.session.vim'
+      let file = getcwd() . '/Session.vim'
     elseif isdirectory(a:file)
       let file = substitute(fnamemodify(expand(a:file), ':p'), '[\/]$', '', '')
-            \ . '/.session.vim'
+            \ . '/Session.vim'
     else
       let file = fnamemodify(expand(a:file), ':p')
     endif
@@ -102,7 +102,9 @@ function! ObsessionLoad()
   if argc() == 0
     let g:this_obsession_load = getcwd() . '/Session.vim'
     if (filereadable(g:this_obsession_load))
-      exe 'source ' g:this_obsession_load
+      execute 'source ' g:this_obsession_load
+    else
+      execute 'Obsession'
     endif
   endif
 endfunction
