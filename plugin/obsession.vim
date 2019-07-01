@@ -100,7 +100,7 @@ endfunction
 
 function! ObsessionLoad()
   if argc() == 0
-    let g:this_obsession_load = getcwd() . '/.session.vim'
+    let g:this_obsession_load = getcwd() . '/Session.vim'
     if (filereadable(g:this_obsession_load))
       exe 'source ' g:this_obsession_load
     endif
