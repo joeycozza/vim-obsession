@@ -33,7 +33,7 @@ function! s:dispatch(bang, file) abort
       let file = fnamemodify(expand(a:file), ':p')
     endif
     if !a:bang
-      \ && file !~# '.session\.vim$'
+      \ && file !~# 'Session\.vim$'
       \ && filereadable(file)
       \ && getfsize(file) > 0
       \ && readfile(file, '', 1)[0] !=# 'let SessionLoad = 1'
